@@ -1,34 +1,30 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Gasto {
+public class Ganho {
     static ArrayList<String> tipos = new ArrayList<String>();
     String tipo;
     String nome;
     String data;
     double valor;
-    String formaPagamento;
 
-    public Gasto(
+    public Ganho(
             int tipo,
             String nome,
             String data,
-            double valor,
-            String formaPagamento) {
-        this.tipo = Gasto.tipos.get(tipo);
+            double valor) {
+        this.tipo = Ganho.tipos.get(tipo);
         this.nome = nome;
         this.data = data;
         this.valor = valor;
-        this.formaPagamento = formaPagamento;
     }
 
-    public static int addGasto() {
+    public static int addGanho() {
         Scanner l = new Scanner(System.in);
-        String separador = "-------------------";
 
-        System.out.println("Adicionar gasto");
-        System.out.println(separador);
-        System.out.println("1 - *Cadastrar novo tipo de gasto*");
+        System.out.println("Adicionar ganho");
+        System.out.println("-------------------");
+        System.out.println("1 - *Cadastrar novo tipo de ganho*");
         for (String t : tipos) {
             System.out.println((tipos.indexOf(t) + 2) + " - " + t);
         }
@@ -37,17 +33,18 @@ public class Gasto {
         int opt = l.nextInt();
         if (opt == 1) {
             System.out.println("");
-            System.out.print("Escreva o nome para o novo tipo de gasto: ");
+            System.out.print("Escreva o nome para o novo tipo de ganho: ");
             tipos.add(l.next());
             return -1;
         } else if ((opt - 2) <= tipos.size()) {
             return opt - 2;
+        } else {
+            return -1;
         }
-        return -1;
         // l.close();
     }
 
     public void relatorio() {
-        System.out.printf("%30s | %25s | %15s | %5.2f | %20s\n", nome, tipo, data, valor, formaPagamento);
+        System.out.printf("%30s | %25s | %15s | %5.2f\n", nome, tipo, data, valor);
     }
 }
