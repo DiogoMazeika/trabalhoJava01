@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,8 +31,18 @@ public class Main {
 
                     System.out.print("Escreva o nome para o gasto: ");
                     String nome = l.next();
-                    System.out.print("Escreva a data do gasto: ");
-                    String data = l.next();
+
+                    System.out.print("Escreva o ano do gasto: ");
+                    int ano = l.nextInt();
+                    System.out.print("Escreva o mês do gasto: ");
+                    int mes = l.nextInt();
+                    System.out.print("Escreva o dia do gasto: ");
+                    int dia = l.nextInt();
+                    Calendar data = Calendar.getInstance();
+                    data.set(Calendar.YEAR, ano);
+                    data.set(Calendar.MONTH, mes);
+                    data.set(Calendar.DAY_OF_MONTH, dia);
+
                     System.out.print("Escreva o valor do gasto: ");
                     double valor = l.nextDouble();
                     System.out.print("Escreva a forma de pagamento do gasto: ");
@@ -72,7 +83,7 @@ public class Main {
                 System.out.println("Aperte qualquer tecla para voltar...");
                 Scanner l = new Scanner(System.in);
                 l.nextLine();
-            } else {// if (opt == 4) {
+            } else  if (opt == 4) {
                 System.out.printf("%30s | %25s | %15s | %7s \n", "Gasto", "Tipo", "Data", "Valor");
                 for (Ganho g : ganhos) {
                     g.relatorio();
@@ -81,6 +92,14 @@ public class Main {
                 System.out.println("Aperte qualquer tecla para voltar...");
                 Scanner l = new Scanner(System.in);
                 l.nextLine();
+            }else if (opt == 5){
+                // Scanner l = new Scanner(System.in);
+                // System.out.print("Selecione o ano: ");
+                // String ano = l.next();
+                // System.out.print("Selecione o mês: ");
+                // String mes = l.next();
+
+                // double ganhoTotal = Ganho.totalMes(ano, mes);
             }
         }
 
