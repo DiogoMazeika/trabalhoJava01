@@ -62,8 +62,18 @@ public class Main {
 
                     System.out.print("Escreva o nome para o ganho: ");
                     String nome = l.next();
-                    System.out.print("Escreva a data do ganho: ");
-                    String data = l.next();
+
+                    System.out.print("Escreva o ano do ganho: ");
+                    int ano = l.nextInt();
+                    System.out.print("Escreva o mês do ganho: ");
+                    int mes = l.nextInt();
+                    System.out.print("Escreva o dia do ganho: ");
+                    int dia = l.nextInt();
+                    Calendar data = Calendar.getInstance();
+                    data.set(Calendar.YEAR, ano);
+                    data.set(Calendar.MONTH, mes);
+                    data.set(Calendar.DAY_OF_MONTH, dia);
+
                     System.out.print("Escreva o valor do ganho: ");
                     double valor = l.nextDouble();
 
@@ -74,8 +84,10 @@ public class Main {
                             valor));
                 }
             } else if (opt == 3) {
-                System.out.printf("%30s | %25s | %15s | %7s | %20s\n", "Gasto", "Tipo", "Data", "Valor",
-                        "Forma de Pagamento");
+                System.out.printf("%30s | %25s | %15s | %20s | %7s\n",
+                        "Gasto", "Tipo", "Data",
+                        "Forma de Pagamento",
+                        "Valor");
                 for (Gasto g : gastos) {
                     g.relatorio();
                 }
@@ -83,7 +95,7 @@ public class Main {
                 System.out.println("Aperte qualquer tecla para voltar...");
                 Scanner l = new Scanner(System.in);
                 l.nextLine();
-            } else  if (opt == 4) {
+            } else if (opt == 4) {
                 System.out.printf("%30s | %25s | %15s | %7s \n", "Gasto", "Tipo", "Data", "Valor");
                 for (Ganho g : ganhos) {
                     g.relatorio();
@@ -92,14 +104,43 @@ public class Main {
                 System.out.println("Aperte qualquer tecla para voltar...");
                 Scanner l = new Scanner(System.in);
                 l.nextLine();
-            }else if (opt == 5){
-                // Scanner l = new Scanner(System.in);
-                // System.out.print("Selecione o ano: ");
-                // String ano = l.next();
-                // System.out.print("Selecione o mês: ");
-                // String mes = l.next();
+            } else if (opt == 5) {
+                Scanner l = new Scanner(System.in);
+                double totalGasto = 0;
+                double totalGanho = 0;
+                System.out.print("Selecione o ano: ");
+                int ano = l.nextInt();
+                System.out.print("Selecione o mês: ");
+                int mes = l.nextInt();
 
-                // double ganhoTotal = Ganho.totalMes(ano, mes);
+                Calendar data = Calendar.getInstance();
+                data.set(Calendar.YEAR, ano);
+                data.set(Calendar.MONTH, mes);
+                String mesSelecionado = data.get(Calendar.YEAR) + "/" + data.get(Calendar.MONTH);
+
+                for (Gasto g : gastos) {
+                    if (data.get(Calendar.YEAR) == g.data.get(Calendar.YEAR) &&
+                            data.get(Calendar.MONTH) == g.data.get(Calendar.MONTH)) {
+                        totalGasto += g.valor;
+                    }
+                }
+
+                for (Ganho g : ganhos) {
+                    if (data.get(Calendar.YEAR) == g.data.get(Calendar.YEAR) &&
+                            data.get(Calendar.MONTH) == g.data.get(Calendar.MONTH)) {
+                        totalGanho += g.valor;
+                    }
+                }
+                System.out.println("");
+                System.out.println(mesSelecionado);
+                System.out.println("Ganho total: R$" + totalGanho);
+                System.out.println("Gasto total: R$" + totalGasto);
+                System.out.println("Saldo: R$" + (totalGanho - totalGasto));
+
+                System.out.println("");
+                System.out.println("Aperte qualquer tecla para voltar...");
+                Scanner l2 = new Scanner(System.in);
+                l2.nextLine();
             }
         }
 

@@ -1,17 +1,18 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Ganho {
     static ArrayList<String> tipos = new ArrayList<String>();
     String tipo;
     String nome;
-    String data;
+    Calendar data;
     double valor;
 
     public Ganho(
             int tipo,
             String nome,
-            String data,
+            Calendar data,
             double valor) {
         this.tipo = Ganho.tipos.get(tipo);
         this.nome = nome;
@@ -45,6 +46,8 @@ public class Ganho {
     }
 
     public void relatorio() {
-        System.out.printf("%30s | %25s | %15s | %5.2f\n", nome, tipo, data, valor);
+        System.out.printf("%30s | %25s | %15s | %5.2f\n", nome, tipo,
+                data.get(Calendar.DAY_OF_MONTH) + "/" + data.get(Calendar.MONTH) + "/" + data.get(Calendar.YEAR),
+                valor);
     }
 }
